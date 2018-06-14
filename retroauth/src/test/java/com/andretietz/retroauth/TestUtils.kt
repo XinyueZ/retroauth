@@ -48,7 +48,6 @@ class TestUtils {
         .url("http://www.google.com/test/request2")
         .build()
 
-
     val request2 = Request.Builder()
         .method("GET", null)
         .header("var", "foo")
@@ -66,7 +65,7 @@ class TestUtils {
     val id2 = Utils.createUniqueIdentifier(request2)
     val id3 = Utils.createUniqueIdentifier(request3)
 
-    Assert.assertFalse(id1 == id2)
+    Assert.assertTrue(id1 == id2)
     Assert.assertTrue(id2 == id3)
 
   }

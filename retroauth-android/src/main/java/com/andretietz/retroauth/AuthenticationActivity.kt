@@ -47,7 +47,7 @@ abstract class AuthenticationActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     accountManager = AccountManager.get(application)
     tokenStorage = AndroidTokenStorage(application)
-
+    ActivityManager.get(application).register(this)
     accountAuthenticatorResponse = intent.getParcelableExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE)
     accountAuthenticatorResponse?.onRequestContinued()
 

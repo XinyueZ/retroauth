@@ -20,6 +20,7 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
+import android.util.Log
 
 /**
  * The [ActivityManager] provides an application [android.content.Context] as well as an [Activity] if
@@ -44,11 +45,22 @@ internal class ActivityManager private constructor(application: Application) {
     application.registerActivityLifecycleCallbacks(handler)
   }
 
+  fun register(activity: Activity) {
+    handler.register(activity.hashCode())
+  }
+
   /**
    * An implementation of [ActivityLifecycleCallbacks] which stores a reference to the [Activity] as long as
    * it is not stopped. If the [Activity] is stopped, the reference will be removed.
    */
   private class LifecycleHandler internal constructor() : ActivityLifecycleCallbacks {
+
+    var hash: Int? = null
+
+    fun register(hash: Int) {
+      this.hash = hash
+    }
+
     private val activityStack = WeakActivityStack()
 
     internal val current: Activity? get() = activityStack.peek()
@@ -57,7 +69,9 @@ internal class ActivityManager private constructor(application: Application) {
 
     override fun onActivityPaused(activity: Activity) {}
 
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+      Log.e("Manager", "Activity created: " + activity.toString())
+    }
 
     override fun onActivityStarted(activity: Activity) = activityStack.push(activity)
 
@@ -65,7 +79,14 @@ internal class ActivityManager private constructor(application: Application) {
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {}
 
-    override fun onActivityDestroyed(activity: Activity) {}
+    override fun onActivityDestroyed(activity: Activity) {
+      if (activity.hashCode() == hash) {
+        Log.e("Manager", "Emergency unlock!")
+        CredentialInterceptor.emergencyUnlock()
+      }
+      Log.e("Manager", "Activity destroyed: " + activity.toString())
+
+    }
   }
 
   companion object {

@@ -16,6 +16,7 @@
 
 package com.andretietz.retroauth
 
+import android.util.Log
 import android.util.SparseArray
 
 /**
@@ -26,9 +27,13 @@ internal class AndroidMethodCache : MethodCache<String, AndroidTokenType> {
   private val cache = SparseArray<RequestType<String, AndroidTokenType>>()
 
   override fun register(requestIdentifier: Int, type: RequestType<String, AndroidTokenType>) {
+    Log.e("Cache", "Registering identifier:" + requestIdentifier)
     cache.put(requestIdentifier, type)
   }
 
-  override fun getTokenType(requestIdentifier: Int): RequestType<String, AndroidTokenType>? = cache[requestIdentifier]
+  override fun getTokenType(requestIdentifier: Int): RequestType<String, AndroidTokenType>? {
+    Log.e("Cache", "Reading identifier:" + requestIdentifier)
+    return cache[requestIdentifier]
+  }
 
 }

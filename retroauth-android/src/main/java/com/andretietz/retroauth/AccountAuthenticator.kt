@@ -44,23 +44,19 @@ class AccountAuthenticator
      * The Action string to open the implementation of the [AuthenticationActivity],
      * to show the user a login.
      */
-    protected val action: String
+     val action: String
 ) : AbstractAccountAuthenticator(context) {
 
     override fun addAccount(
         response: AccountAuthenticatorResponse,
         accountType: String, authTokenType: String,
         requiredFeatures: Array<String>, options: Bundle
-    ): Bundle {
-        return createAuthBundle(response, accountType, authTokenType, null)
-    }
+    ) = createAuthBundle(response, accountType, authTokenType, null)
 
     override fun getAuthToken(
         response: AccountAuthenticatorResponse, account: Account,
         authTokenType: String, options: Bundle
-    ): Bundle {
-        return createAuthBundle(response, account.type, authTokenType, account.name)
-    }
+    ) = createAuthBundle(response, account.type, authTokenType, account.name)
 
     /**
      * Creates an Intent to open the Activity to login.
@@ -90,37 +86,26 @@ class AccountAuthenticator
     override fun confirmCredentials(
         response: AccountAuthenticatorResponse,
         account: Account, options: Bundle
-    ): Bundle? {
-        return null
-    }
+    ) = null
 
     override fun editProperties(
         response: AccountAuthenticatorResponse,
         accountType: String
-    ): Bundle? {
-        return null
-    }
+    ) = null
 
-    override fun getAuthTokenLabel(authTokenType: String): String? {
-        return null
-    }
+    override fun getAuthTokenLabel(authTokenType: String) = null
 
     override fun updateCredentials(
         response: AccountAuthenticatorResponse, account: Account,
         authTokenType: String, options: Bundle
-    ): Bundle? {
-        return null
-    }
+    ) = null
 
     override fun hasFeatures(
         response: AccountAuthenticatorResponse, account: Account,
         features: Array<String>
-    ): Bundle? {
-        return null
-    }
+    ) = null
 
     companion object {
-
-        val KEY_TOKEN_TYPE = "account_token_type"
+        const val KEY_TOKEN_TYPE = "account_token_type"
     }
 }

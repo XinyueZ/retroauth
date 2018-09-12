@@ -28,7 +28,7 @@ buildscript {
             'mochitoCore'               : '2.21.0',
             'mochitoAndroid'            : '2.21.0',
             'mochitoKotlin'             : '1.5.0',
-            'robolectric'               : '4.0-alpha-4-SNAPSHOT',
+            'robolectric'               : '4.0+',
 
             'kotlin'                    : kotlinVersion,
             'kotlinStdlib'              : kotlinVersion,

@@ -17,11 +17,7 @@ android {
             minifyEnabled false
         }
     }
-    lintOptions {
-        abortOnError false
-        absolutePaths false
-        lintConfig rootProject.file("lint.xml")
-    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

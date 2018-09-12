@@ -14,16 +14,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             consumerProguardFiles 'proguard-rules.pro'
         }
-    }
-
-    lintOptions {
-        abortOnError true
-        absolutePaths false
-        lintConfig rootProject.file("lint.xml")
     }
 
     compileOptions {

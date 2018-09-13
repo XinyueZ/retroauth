@@ -33,7 +33,7 @@ buildscript {
             'kotlin'                    : kotlinVersion,
             'kotlinStdlib'              : kotlinVersion,
             'kotlinReflect'             : kotlinVersion,
-            'gradle'                    : '3.3.0-alpha08'
+            'gradle'                    : '3.3.0-alpha10'
     ]
     ext.names = [
             'applicationId'            : 'com.andretietz.retroauth.demo',
